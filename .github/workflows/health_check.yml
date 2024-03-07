@@ -2,7 +2,7 @@ name: to Kindle Manager
 
 on:
   schedule:
-    - cron: '*/23 * * * *'  # Runs every 10 minutes
+    - cron: '*/23 * * * *'  # Runs every 23 minutes
 
 jobs:
   check_api:
