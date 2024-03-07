@@ -1,0 +1,19 @@
+name: to Kindle Manager
+
+on:
+  schedule:
+    - cron: '*/23 * * * *'  # Runs every 10 minutes
+
+jobs:
+  check_api:
+    runs-on: ubuntu-latest  # Use an Ubuntu runner
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run to kindle Health Check
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }} 
+          TO_KINDLE: ${{ secrets.TO_KINDLE }}
+          TO_KINDLE_RESTART_URL: ${{ secrets.TO_KINDLE_RESTART_URL }}
+        run: |
+          chmod +x ./script.sh
+          ./script.sh 
