@@ -17,7 +17,7 @@ jobs:
         run: |
           chmod +x ./script.sh
           script_output=$(./script.sh)  
-          echo "script_output:: $script_output" >> $GITHUB_ENV  
+          echo "script_output=$script_output" >> $GITHUB_ENV  
         
       - name: Generate Status Image
         env:
@@ -25,7 +25,7 @@ jobs:
         run: |
           status=$(echo $script_output | awk '{print $NF}')  
           color="green"
-          if [ "$status" == "FAILURE" ]; then 
+          if [ "$status" == "DOWN" ]; then 
             color="red" 
           fi
           echo "<svg xmlns='http://www.w3.org/2000/svg' width='100' height='20'><rect width='100' height='20' fill='$color' /><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle'>$status</text></svg>" > status.svg 
