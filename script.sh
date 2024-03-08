@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/bas
 
 # Settings
 toKindle="$TO_KINDLE"
