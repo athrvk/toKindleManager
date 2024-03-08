@@ -23,7 +23,7 @@ status_code=$(hit_api "$toKindle")
 
 if [ "$status_code" -eq 200 ]; then
     # Primary API is healthy 
-    echo "SUCCESS"  
+    echo "UP"  
 else
     # Primary API has issues; attempt restart
     for (( j=1; j<=$MAX_RETRIES; j++ )); do
@@ -31,12 +31,12 @@ else
 
         if [ "$backup_status_code" -eq 200 ]; then
             # Restart succeeded
-            echo "SUCCESS"  
+            echo "RESTARTED | UP"  
             break
         fi
 
         if [ "$j" -eq "$MAX_RETRIES" ]; then
-            echo "FAILURE" 
+            echo "DOWN" 
         fi
     done
 fi
