@@ -31,7 +31,7 @@ else
 
         if [ "$backup_status_code" -eq 200 ]; then
             # Restart succeeded
-            echo "RESTARTED | UP"  
+            echo "RESTARTED : UP"  
             break
         fi
 
