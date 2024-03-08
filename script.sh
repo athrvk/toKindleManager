@@ -12,31 +12,32 @@ hit_api() {
 
 restart_server() {
     curl -s -o /dev/null -w "%{http_code}" \
-        --request POST \
-        --url "$TO_KINDLE_RESTART_URL" \
-        --header 'accept: application/json' \
-        --header 'authorization: Bearer $API_TOKEN'
+         --request POST \
+         --url "$TO_KINDLE_RESTART_URL" \
+         --header 'accept: application/json' \
+         --header 'authorization: Bearer $API_TOKEN'
 }
 
 # Primary API call
 status_code=$(hit_api "$toKindle")
 
 if [ "$status_code" -eq 200 ]; then
-    # Primary API is healthy 
-    echo "UP"  
-else
-    # Primary API has issues; attempt restart
+    echo "to kindle is up!"
+fi
+
+if [ "$status_code" -eq 503 ]; then
+    # to kindle has issues; attempt restart
     for (( j=1; j<=$MAX_RETRIES; j++ )); do
         backup_status_code=$(restart_server)
 
         if [ "$backup_status_code" -eq 200 ]; then
-            # Restart succeeded
-            echo "RESTARTED : UP"  
-            break
+            echo "restarting to kindle..."
+            break 
         fi
 
         if [ "$j" -eq "$MAX_RETRIES" ]; then
-            echo "DOWN" 
+            echo "couldn't restart to kindle; try manually"
+            exit 1
         fi
     done
 fi

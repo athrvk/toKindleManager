@@ -2,36 +2,19 @@ name: to Kindle Manager
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/23 * * * *'  # Runs every 23 minutes
+
 
 jobs:
   check_api:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Use an Ubuntu runner
     steps:
       - uses: actions/checkout@v3
       - name: Run to kindle Health Check
         env:
-          API_TOKEN: ${{ secrets.API_TOKEN }}
+          API_TOKEN: ${{ secrets.API_TOKEN }} 
           TO_KINDLE: ${{ secrets.TO_KINDLE }}
           TO_KINDLE_RESTART_URL: ${{ secrets.TO_KINDLE_RESTART_URL }}
         run: |
           chmod +x ./script.sh
-          script_output=$(./script.sh)  
-          echo "script_output=$script_output" >> $GITHUB_ENV  
-        
-      - name: Generate Status Image
-        env:
-          script_output: ${{ env.script_output }} 
-        run: |
-          status=$(echo $script_output | awk '{print $NF}')  
-          color="green"
-          if [ "$status" == "DOWN" ]; then 
-            color="red" 
-          fi
-          echo "<svg xmlns='http://www.w3.org/2000/svg' width='100' height='20'><rect width='100' height='20' fill='$color' /><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle'>$status</text></svg>" > status.svg 
-        
-      - name: Upload Status Image Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: status-badge
-          path: status.svg 
+          ./script.sh
