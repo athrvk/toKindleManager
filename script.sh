@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # Settings
 toKindle="$TO_KINDLE"
 MAX_RETRIES=2
