@@ -22,23 +22,22 @@ restart_server() {
 status_code=$(hit_api "$toKindle")
 
 if [ "$status_code" -eq 200 ]; then
-    # Success!
     echo "to kindle is up!"
 fi
 
 if [ "$status_code" -eq 503 ]; then
-    # Primary API failed, try backup with retries
+    # to kindle has issues; attempt restart
     for (( j=1; j<=$MAX_RETRIES; j++ )); do
         backup_status_code=$(restart_server)
 
         if [ "$backup_status_code" -eq 200 ]; then
-            # Backup succeeded
-            echo "restarting to kindle"
+            echo "restarting to kindle..."
             break 
         fi
 
         if [ "$j" -eq "$MAX_RETRIES" ]; then
-            echo "all retries exhausted for restarting to kindle"
+            echo "couldn't restart to kindle; try manually"
+            exit 1
         fi
     done
 fi
