@@ -11,7 +11,7 @@ hit_api() {
 }
 
 restart_server() {
-    curl -s -o /dev/null -w "%{http_code}" \
+    curl -s -o rest.txt -w "%{http_code}" \
          --request POST \
          --url "$TO_KINDLE_RESTART_URL" \
          --header 'accept: application/json' \
@@ -23,6 +23,7 @@ status_code=$(hit_api "$toKindle")
 
 backup_status_code=$(restart_server)
 echo $backup_status_code
+cat resp.txt
 
 exit 0
 
