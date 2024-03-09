@@ -5,7 +5,7 @@ on:
     - cron: '*/23 * * * *'  # Runs every 23 minutes
   push:
     branches:
-      - main
+      - master
 
 
 jobs:
