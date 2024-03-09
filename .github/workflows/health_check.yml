@@ -3,6 +3,9 @@ name: to Kindle Manager
 on:
   schedule:
     - cron: '*/23 * * * *'  # Runs every 23 minutes
+  push:
+    branches:
+      - main
 
 
 jobs:
