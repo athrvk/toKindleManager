@@ -11,7 +11,7 @@ hit_api() {
 }
 
 restart_server() {
-    curl -s -o rest.txt -w "%{http_code}" \
+    curl -s -o resp.txt -w "%{http_code}" \
          --request POST \
          --url "$TO_KINDLE_RESTART_URL" \
          --header 'accept: application/json' \
