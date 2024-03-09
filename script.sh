@@ -29,6 +29,7 @@ if [ "$status_code" -eq 503 ]; then
     # to kindle has issues; attempt restart
     for (( j=1; j<=$MAX_RETRIES; j++ )); do
         backup_status_code=$(restart_server)
+        echo $backup_status_code
 
         if [ "$backup_status_code" -eq 200 ]; then
             echo "restarting to kindle..."
