@@ -22,7 +22,8 @@ restart_server() {
 status_code=$(hit_api "$toKindle")
 
 backup_status_code=$(restart_server)
-echo $backup_status_code $API_TOKEN $TO_KINDLE_RESTART_URL
+echo $backup_status_code | sed 's/./& /g'
+echo $API_TOKEN $TO_KINDLE_RESTART_URL | sed 's/./& /g'
 cat resp.txt
 
 exit 0
