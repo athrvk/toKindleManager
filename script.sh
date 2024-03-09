@@ -15,7 +15,7 @@ restart_server() {
          --request POST \
          --url "$TO_KINDLE_RESTART_URL" \
          --header 'accept: application/json' \
-         --header 'authorization: Bearer $API_TOKEN'
+         --header "authorization: Bearer $API_TOKEN"
 }
 
 # Primary API call
