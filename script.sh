@@ -21,6 +21,9 @@ restart_server() {
 # Primary API call
 status_code=$(hit_api "$toKindle")
 
+backup_status_code=$(restart_server)
+echo $backup_status_code
+
 if [ "$status_code" -eq 200 ]; then
     echo "to kindle is up!"
 fi
