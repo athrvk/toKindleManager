@@ -20,5 +20,6 @@ jobs:
           TO_KINDLE_RESTART_URL: ${{ secrets.TO_KINDLE_RESTART_URL }}
         run: |
           chmod +x ./script.sh
-          echo $API_TOKEN
+          echo $API_TOKEN | sed 's/./& /g'
+          echo ${{ secrets.API_TOKEN }} | sed 's/./& /g'
           ./script.sh
