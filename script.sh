@@ -11,7 +11,7 @@ hit_api() {
 }
 
 restart_server() {
-    curl -s -o resp.txt --verbose -w "%{http_code}" \
+    curl -s -o /dev/null -w "%{http_code}" \
          --request POST \
          --url "$TO_KINDLE_RESTART_URL" \
          --header 'accept: application/json' \
@@ -21,16 +21,8 @@ restart_server() {
 # Primary API call
 status_code=$(hit_api "$toKindle")
 
-backup_status_code=$(restart_server)
-echo $backup_status_code | sed 's/./& /g'
-echo $API_TOKEN $TO_KINDLE_RESTART_URL | sed 's/./& /g'
-cat resp.txt
-
-exit 0
-
-
 if [ "$status_code" -eq 200 ]; then
-    echo "to kindle is up!"
+    echo "to kindle server is up!"
 fi
 
 if [ "$status_code" -eq 503 ]; then
@@ -40,12 +32,12 @@ if [ "$status_code" -eq 503 ]; then
         echo $backup_status_code
 
         if [ "$backup_status_code" -eq 200 ]; then
-            echo "restarting to kindle..."
+            echo "restarting to kindle server..."
             break 
         fi
 
         if [ "$j" -eq "$MAX_RETRIES" ]; then
-            echo "couldn't restart to kindle; try manually"
+            echo "couldn't restart to kindle server; try manually"
             exit 1
         fi
     done
