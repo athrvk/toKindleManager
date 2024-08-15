@@ -7,6 +7,9 @@ A cron job to keep [to kindle](https://tokindle.onrender.com/) service available
 ## Description:
 To Kindle is a cross-platform application designed to enhance the reading experience by seamlessly delivering web articles to Kindle devices.  The app strips away distracting advertisements and extraneous content, providing a clean, focused reading environment.
 
+### Why To Kindle? 
+You don't want to read ads on your e-reader, you don't want unneccessary links on your e-reader, you want the pure content.
+
 ## Key Features:
 
 ### Article Extraction & Optimization: Extracts and formats core content from web articles, removing distractions.
