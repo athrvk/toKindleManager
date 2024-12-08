@@ -23,6 +23,8 @@ You don't want to read ads on your e-reader, you don't want unneccessary links o
 
 ### EPUB Download: Offers the option to download articles in EPUB format for flexible reading on other devices.
 
+### PDF Conversion: Send PDF to your kindle devices in single click.
+
 ### Cross-Platform Availability:
     Chrome Extension: Developed using React.
     Android App: Built with React Native.
