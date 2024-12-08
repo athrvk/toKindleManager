@@ -1,6 +1,10 @@
 # toKindleManager
 
-[![to Kindle Manager](https://github.com/athrvk/toKindleManager/actions/workflows/health_check.yml/badge.svg?event=schedule)](https://github.com/athrvk/toKindleManager/actions/workflows/health_check.yml)
+
+![to Kindle Manager](https://github.com/athrvk/toKindleManager/actions/workflows/health_check.yml/badge.svg?event=schedule)
+
+[![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/dnogomkankmcpeejhiedbkbamajmjedc)](https://chromewebstore.google.com/detail/to-kindle/dnogomkankmcpeejhiedbkbamajmjedc) [![Chrome Web Store Last Updated](https://img.shields.io/chrome-web-store/last-updated/dnogomkankmcpeejhiedbkbamajmjedc)](https://chromewebstore.google.com/detail/to-kindle/dnogomkankmcpeejhiedbkbamajmjedc)
+
 
 A cron job to keep [to kindle](https://tokindle.onrender.com/) service available 
 
