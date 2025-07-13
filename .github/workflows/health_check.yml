@@ -1,23 +1,51 @@
-name: to Kindle Manager
+name: ToKindle Service Health Monitor
 
 on:
   schedule:
-    - cron: '*/23 * * * *'  # Runs every 23 minutes
+    - cron: '*/23 * * * *'  # Runs every 23 minutes to keep service alive
   push:
     branches:
       - master
+  workflow_dispatch:  # Allow manual triggering
 
+# Prevent multiple concurrent workflow runs
+concurrency:
+  group: health-check-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  check_api:
-    runs-on: ubuntu-latest  # Use an Ubuntu runner
+  health_check:
+    name: Monitor ToKindle Service Health
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    
+    # Minimal required permissions
+    permissions:
+      contents: read
+    
     steps:
-      - uses: actions/checkout@v4
-      - name: Run to kindle Health Check
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Make health check script executable
+        run: chmod +x ./script.sh
+        
+      - name: Execute ToKindle health check and restart if needed
         env:
-          API_TOKEN: ${{ secrets.API_TOKEN }} 
+          API_TOKEN: ${{ secrets.API_TOKEN }}
           TO_KINDLE: ${{ secrets.TO_KINDLE }}
           TO_KINDLE_RESTART_URL: ${{ secrets.TO_KINDLE_RESTART_URL }}
         run: |
-          chmod +x ./script.sh
+          echo "Starting ToKindle health check..."
           ./script.sh
+          echo "Health check completed successfully"
+        
+      - name: Report workflow status
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ ToKindle health check completed successfully"
+          else
+            echo "❌ ToKindle health check failed"
+            exit 1
+          fi
