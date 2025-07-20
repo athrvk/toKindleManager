@@ -7,6 +7,7 @@
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Ftokindle.in%2F)](https://tokindle.in/) [![Website](https://img.shields.io/website?url=https%3A%2F%2Fapi.tokindle.in%2F&label=server)](https://api.tokindle.in/health)
 
+[Status](https://stats.uptimerobot.com/3H5CtkFcPj)
 
 
 A cron job to keep [to kindle](https://tokindle.in/) service available 
