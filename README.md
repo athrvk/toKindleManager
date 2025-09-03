@@ -9,6 +9,8 @@
 
 [Status](https://stats.uptimerobot.com/3H5CtkFcPj)
 
+This job has been moved to uptimerobot, as it provides health check at every 5 mins
+
 
 A cron job to keep [to kindle](https://tokindle.in/) service available 
 
@@ -34,3 +36,4 @@ You don't want to read ads on your e-reader, you don't want unneccessary links o
     Web Interface: Created using Next.js for a user-friendly experience.
 
 ### Robust Backend: Powered by Node.js and Express for efficient processing and article delivery.
+
